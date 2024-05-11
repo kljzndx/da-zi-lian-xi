@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities{
+    .item-activities{
+        animation: colorPuppies 3s infinite;
+    }
+
+    @keyframes colorPuppies {
+        0%, 100%{
+            @apply bg-blue-50;
+        }
+
+        50%{
+            @apply bg-blue-300;
+        }
+    }
+}

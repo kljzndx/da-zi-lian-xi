@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components{
+    .btn {
+        @apply px-2 py-1 text-lg
+    }
+    .btn-blue{
+        @apply bg-sky-400 hover:bg-sky-300 active:bg-sky-500 disabled:bg-sky-200 disabled:text-gray-400
+    }
+}
