@@ -24,7 +24,7 @@ export default function ParsingPanel({ onParsed }) {
 
     for (let i = 0; i < strArr.length; i++) {
       const source = strArr[i];
-      const pinyin = pinyinArr[i];
+      const pinyin = pinyinArr[i].replace("ü", "v");
 
       result.push({ code: pinyin, word: source })
     }
