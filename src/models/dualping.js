@@ -1,9 +1,9 @@
 /**
- * @param {object} format 
- * @param {string} format.[key] 
+ * @param {object} mappings 
+ * @param {string} mappings.[key] 
  * @param {string} fullPing 
  */
-function parseDualPing(format, fullPing) {
+function parseDualPing(mappings, fullPing) {
     if (fullPing.length == 1) {
         return {
             left: { dualCode: fullPing, fullCode: "" },
@@ -26,13 +26,13 @@ function parseDualPing(format, fullPing) {
     let rDual = "";
     let rFull = "";
 
-    for (const yingJie in format) {
-        if (!format.hasOwnProperty(yingJie)) continue;
+    for (const yingJie in mappings) {
+        if (!mappings.hasOwnProperty(yingJie)) continue;
 
         /**
          * @type {string}
          */
-        const key = format[yingJie];
+        const key = mappings[yingJie];
         if (key == "" || key == "-") continue;
 
         if (['ch', 'sh', 'zh'].includes(yingJie)) {
