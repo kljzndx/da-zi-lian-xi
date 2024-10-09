@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react'
 import WordItem from './Worditem'
 
+import map_xiaohe from '../assets/dualping-xiaohe.json'
+import map_ziranma from '../assets/dualping-ziranma.json'
+
 /**
  * @param {{data:Array<{code:string, word:string}>, needReset:boolean, onReseted:Function, onAllCleaned:Function}} param0 
  */
@@ -8,6 +11,7 @@ function GamePanel({ data, needReset, onReseted, onAllCleaned }) {
   const [nowInputing, setNowInputing] = useState("")
   const [selectedId, setSelectedId] = useState(0)
   const [isSubmitBySpace, setIsSubmitBySpace] = useState(true)
+  const [dualMap, setDualMap] = useState(null);
 
   useEffect(() => {
     if (needReset) {
@@ -76,6 +80,21 @@ function GamePanel({ data, needReset, onReseted, onAllCleaned }) {
         </div>
       </div>
 
+      <div className='pb-4 flex gap-x-2'>
+        <p>双拼模式：</p>
+        <label>
+          <input type="radio" name='dualMap' checked={dualMap == null} onChange={e => setDualMap(null)} />
+          禁用
+        </label>
+        <label>
+          <input type="radio" name='dualMap' checked={dualMap == map_xiaohe} onChange={e => setDualMap(map_xiaohe)} />
+          小鹤双拼
+        </label>
+        <label>
+          <input type="radio" name='dualMap' checked={dualMap == map_ziranma} onChange={e => setDualMap(map_ziranma)} />
+          自然码双拼
+        </label>
+      </div>
 
       <ul className='flex flex-wrap'>
         {data?.map((it, id) => <WordItem key={id} id={id} code={it.code} word={it.word} inputingCode={nowInputing} selectedId={selectedId} onCodeCleaned={onCodeCleaned} onClick={id => setSlctId(id)} />)}
