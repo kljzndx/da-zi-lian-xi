@@ -55,6 +55,12 @@ function parseDualPing(format, fullPing) {
         lFull = fullPing[0];
     }
 
+    if (rDual == "") {
+        const str = fullPing.replace(lFull, "");
+        rDual = str;
+        rFull = str;
+    }
+
     return {
         left: { dualCode: lDual, fullCode: lFull },
         right: { dualCode: rDual, fullCode: rFull },
