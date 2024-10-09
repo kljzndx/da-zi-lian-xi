@@ -6,7 +6,7 @@
 function parseDualPing(format, fullPing) {
     if (fullPing.length == 1) {
         return {
-            left: { dualCode: fullPing, fullCode: fullPing },
+            left: { dualCode: fullPing, fullCode: "" },
             right: { dualCode: fullPing, fullCode: fullPing },
         };
     }
@@ -33,6 +33,7 @@ function parseDualPing(format, fullPing) {
          * @type {string}
          */
         const key = format[yingJie];
+        if (key == "" || key == "-") continue;
 
         if (['ch', 'sh', 'zh'].includes(yingJie)) {
             if (fullPing.startsWith(yingJie)) {
