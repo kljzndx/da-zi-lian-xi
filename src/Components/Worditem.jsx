@@ -13,10 +13,11 @@ import dualping from "../models/dualping";
  */
 function WordItem({ id, code, word, selectedId, inputingCode, dualMap, onCodeCleaned, onClick }) {
 
-    const dualBlock = dualMap == null ? null : dualping.parseDualPing(dualMap, code);
     let cd = code.toLowerCase()
     let ic = inputingCode.toLowerCase()
 
+    const dualBlock = dualMap == null ? null : dualping.parseDualPing(dualMap, cd);
+    
     if (dualBlock != null)
         cd = dualBlock.left.dualCode + (code == word ? "" : dualBlock.right.dualCode);
     
