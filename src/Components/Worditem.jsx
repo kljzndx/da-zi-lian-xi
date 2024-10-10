@@ -2,19 +2,24 @@ import { useEffect } from "react";
 import classNames from "classnames";
 import "./WordItem.css";
 import symbolZhToEn from "../assets/symbolZhToEn.json"
+import dualping from "../models/dualping";
 
 /**
  * @callback onClickCallback
  * @param {int} itemId
  * 
  * @function
- * @param {{id:int, code:string, word:string, selectedId:int, inputingCode:string, onCodeCleaned:Function, onClick:onClickCallback} param0 
+ * @param {{id:int, code:string, word:string, selectedId:int, inputingCode:string, dualMap:object, onCodeCleaned:Function, onClick:onClickCallback} param0 
  */
-function WordItem({ id, code, word, selectedId, inputingCode, onCodeCleaned, onClick }) {
+function WordItem({ id, code, word, selectedId, inputingCode, dualMap, onCodeCleaned, onClick }) {
 
+    const dualBlock = dualMap == null ? null : dualping.parseDualPing(dualMap, code);
     let cd = code.toLowerCase()
     let ic = inputingCode.toLowerCase()
 
+    if (dualBlock != null)
+        cd = dualBlock.left.dualCode + dualBlock.right.dualCode;
+    
     if (code == word) {
         /** @type {{zh:string, en:string}[]} */
         const symbols = symbolZhToEn

@@ -97,7 +97,7 @@ function GamePanel({ data, needReset, onReseted, onAllCleaned }) {
       </div>
 
       <ul className='flex flex-wrap'>
-        {data?.map((it, id) => <WordItem key={id} id={id} code={it.code} word={it.word} inputingCode={nowInputing} selectedId={selectedId} onCodeCleaned={onCodeCleaned} onClick={id => setSlctId(id)} />)}
+        {data?.map((it, id) => <WordItem key={id} id={id} code={it.code} word={it.word} inputingCode={nowInputing} selectedId={selectedId} dualMap={dualMap} onCodeCleaned={onCodeCleaned} onClick={id => setSlctId(id)} />)}
       </ul>
     </div>
   )
