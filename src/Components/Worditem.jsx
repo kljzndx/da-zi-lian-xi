@@ -17,10 +17,8 @@ function WordItem({ id, code, word, selectedId, inputingCode, dualMap, onCodeCle
     let cd = code.toLowerCase()
     let ic = inputingCode.toLowerCase()
 
-    if (dualBlock != null) {
-        cd = dualBlock.left.dualCode + dualBlock.right.dualCode;
-        if (code == word) cd = cd.slice(1);
-    }
+    if (dualBlock != null)
+        cd = dualBlock.left.dualCode + (code == word ? "" : dualBlock.right.dualCode);
     
     if (code == word) {
         /** @type {{zh:string, en:string}[]} */
