@@ -18,8 +18,14 @@ function WordItem({ id, code, word, selectedId, inputingCode, dualMap, onCodeCle
 
     const dualBlock = dualMap == null ? null : dualping.parseDualPing(dualMap, cd);
     
-    if (dualBlock != null)
-        cd = dualBlock.left.dualCode + (code == word ? "" : dualBlock.right.dualCode);
+    if (dualBlock != null) {
+        if (code == word) {
+            dualBlock.left.fullCode = cd;
+            dualBlock.right.fullCode = "";
+        } else {
+            cd = dualBlock.left.dualCode + dualBlock.right.dualCode;
+        }
+    }
     
     if (code == word) {
         /** @type {{zh:string, en:string}[]} */
