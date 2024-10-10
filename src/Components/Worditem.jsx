@@ -73,7 +73,7 @@ function WordItem({ id, code, word, selectedId, inputingCode, onCodeCleaned, onC
     return (
         <li className={classNames("w-16 h-16 border border-black text-center my-auto cursor-pointer", getBgColor())} onMouseUp={()=>onClick(id)}>
             <div>
-                {Array.from(code).map((str, index) => <span className={getLetterStyle(index)} key={index}>{str == " " ? "空格" : str}</span>)}
+                {Array.from(cd).map((str, index) => <span className={getLetterStyle(index)} key={index}>{str == " " ? "空格" : str}</span>)}
             </div>
 
             <div className={classNames("text-2xl", { "text-green-500": isPass })}>
