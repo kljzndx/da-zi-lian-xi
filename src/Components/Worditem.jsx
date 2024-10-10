@@ -78,10 +78,17 @@ function WordItem({ id, code, word, selectedId, inputingCode, dualMap, onCodeCle
     }
 
     return (
-        <li className={classNames("w-16 h-16 border border-black text-center my-auto cursor-pointer", getBgColor())} onMouseUp={()=>onClick(id)}>
+        <li className={classNames("w-16 min-h-16 max-h-20 border border-black text-center my-auto cursor-pointer", getBgColor())} onMouseUp={()=>onClick(id)}>
             <div>
                 {Array.from(cd).map((str, index) => <span className={getLetterStyle(index)} key={index}>{str == " " ? "空格" : str}</span>)}
             </div>
+
+            {dualBlock != null &&
+                <div className="text-xs">
+                    <span className={getLetterStyle(0)}>{dualBlock.left.fullCode}</span>
+                    <span className={getLetterStyle(1)}>{dualBlock.right.fullCode}</span>
+                </div>
+            }
 
             <div className={classNames("text-2xl", { "text-green-500": isPass })}>
                 {word}
