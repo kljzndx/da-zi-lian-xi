@@ -9,7 +9,7 @@ import dualping from "../models/dualping";
  * @param {int} itemId
  * 
  * @function
- * @param {{id:int, code:string, word:string, selectedId:int, inputingCode:string, dualMap:object, onCodeCleaned:Function, onClick:onClickCallback} param0 
+ * @param {{id:int, code:string, word:string, selectedId:int, inputingCode:string, dualMap:object, onCodeCleaned:Function, onClick:onClickCallback}} param0 
  */
 function WordItem({ id, code, word, selectedId, inputingCode, dualMap, onCodeCleaned, onClick }) {
 
