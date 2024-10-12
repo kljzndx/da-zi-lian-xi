@@ -1,19 +1,22 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import GamePanel from './Components/GamePanel'
 import ParsingPanel from './Components/ParsingPanel'
 
 function App() {
+  const [allData, setAllData] = useState([]);
   const [pageList, setPageList] = useState([[]]);
   const [pageId, setPageId] = useState(0);
-  const [dataSource, setDataSource] = useState([]);
+  const [pageData, setPageData] = useState([]);
 
   const [isStartGame, setIsStartGame] = useState(false);
   const [needRestart, setNeedRestart] = useState(false);
 
+  useEffect(() => {if (allData.length > 0) setUpPageList()}, [allData])
+
   function setPage(pid, list = pageList) {
     setPageId(pid);
-    setDataSource(list[pid]);
+    setPageData(list[pid]);
     setNeedRestart(true);
   }
 
@@ -26,10 +29,8 @@ function App() {
     setPage(pageId + 1);
   }
 
-  /**
-   * @param {{code:string, word:string}[]} data
-   */
-  function onParsed(data) {
+  function setUpPageList(){
+    const data = allData;
     const pl = []
     let items = [];
 
@@ -48,6 +49,13 @@ function App() {
 
     setPageList(pl)
     setPage(0, pl)
+  }
+
+  /**
+   * @param {{code:string, word:string}[]} data
+   */
+  function onParsed(data) {
+    setAllData(data)
     setIsStartGame(true)
   }
 
@@ -55,7 +63,7 @@ function App() {
     <div>
       <div className='text-2xl text-center py-2'>打字练习</div>
 
-      <GamePanel data={dataSource} needReset={needRestart} onReseted={() => setNeedRestart(false)} onAllCleaned={onAllCleaned} />
+      <GamePanel data={pageData} needReset={needRestart} onReseted={() => setNeedRestart(false)} onAllCleaned={onAllCleaned} />
       
       <div className='flex justify-between my-3'>
         <div>
