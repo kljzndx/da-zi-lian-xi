@@ -8,11 +8,12 @@ function App() {
   const [pageList, setPageList] = useState([[]]);
   const [pageId, setPageId] = useState(0);
   const [pageData, setPageData] = useState([]);
+  const [itemCount, setitemCount] = useState(60);
 
   const [isStartGame, setIsStartGame] = useState(false);
   const [needRestart, setNeedRestart] = useState(false);
 
-  useEffect(() => {if (allData.length > 0) setUpPageList()}, [allData])
+  useEffect(() => {if (allData.length > 0) setUpPageList()}, [allData, itemCount])
 
   function setPage(pid, list = pageList) {
     setPageId(pid);
@@ -38,7 +39,7 @@ function App() {
       const it = data[id];
       items.push(it);
 
-      if (items.length == 60) {
+      if (items.length == itemCount) {
         pl.push(items)
         items = []
       }
@@ -71,6 +72,11 @@ function App() {
         </div>
         
         <div className='flex items-center gap-x-2'>
+          <label>
+            <span className='mr-2'>每页字数</span>
+            <input type="number" className='w-16' value={itemCount} onChange={(e) => setitemCount(e.target.value)} />
+          </label>
+        
           <button className='btn btn-blue' disabled={pageId == 0} onClick={() => setPage(0)}>首页</button>
           <button className='btn btn-blue' disabled={pageId == 0} onClick={() => setPage(pageId - 1)}>上一页</button>
 
