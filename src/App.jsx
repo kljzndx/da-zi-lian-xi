@@ -39,7 +39,7 @@ function App() {
       const it = data[id];
       items.push(it);
 
-      if (items.length == itemCount) {
+      if (items.length >= itemCount) {
         pl.push(items)
         items = []
       }
