@@ -16,8 +16,10 @@ export default function ParsingPanel({ onParsed }) {
   const [text, setText] = useState("");
 
   function ParseText() {
-    const strArr = Array.from(text)
-    const pinyinArr = pinyin(text, { toneType: "none", type: "array", nonZh: "spaced" })
+    const mtext = text.replace(/[\r\n]/g, " ")
+    
+    const strArr = Array.from(mtext)
+    const pinyinArr = pinyin(mtext, { toneType: "none", type: "array", nonZh: "spaced" })
 
     /** @type {{code:string, word:string}[]} */
     let result = []
